@@ -5,6 +5,8 @@ from config import db
 
 class LanguageClassification(db.Model, SerializerMixin):
     
+    serialize_rules = ('-languages.classification',)
+    
     __tablename__ = 'classifications'
     
     id = db.Column(db.Integer, primary_key = True)
@@ -17,6 +19,8 @@ class LanguageClassification(db.Model, SerializerMixin):
         return f"<Language Classification {self.id}, {self.name}, {self.geographic_location}>"
     
 class Language(db.Model, SerializerMixin):
+    
+    serialize_rules = ('-classification.languages',)
     
     __tablename__ = 'languages'
     
